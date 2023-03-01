@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @ObservedObject private var vm = ContentViewModel()
+    @FetchRequest (sortDescriptors: []) var CustIds: FetchedResults<CustID>
     
     var body: some View {
         VStack {

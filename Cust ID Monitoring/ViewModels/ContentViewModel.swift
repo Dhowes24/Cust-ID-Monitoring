@@ -20,9 +20,9 @@ extension ContentView {
         @Published var progress: Double = -0.1
         @Published var showError: Bool = false
         
-        var newFile: String = ""
         
         func parseDoc() async {
+            var newFile: String = ""
             let custIDs = custIDs.trimmingCharacters(in: .whitespaces).components(separatedBy: ",")
             var rows = document.message.components(separatedBy: "\n")
             newFile.append(rows.removeFirst())
