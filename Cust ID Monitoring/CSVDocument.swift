@@ -12,9 +12,7 @@ import UniformTypeIdentifiers
 struct CSVDocument: FileDocument {
     
     static var readableContentTypes: [UTType] { [.commaSeparatedText] }
-    
     var message: String
-    
     init(message:String) {
         self.message = message
     }

@@ -8,8 +8,13 @@
 import Foundation
 import SwiftUI
 
+extension String {
+    func trimmingAllSpaces(using characterSet: CharacterSet = .whitespacesAndNewlines) -> String {
+        return components(separatedBy: characterSet).joined()
+    }
+}
 
-class ContentViewModel: ObservableObject {
+@MainActor class ContentViewModel: ObservableObject {
         
         @Published var custIDs: String = ""
         @Published var document: CSVDocument = CSVDocument(message: "")
@@ -19,10 +24,9 @@ class ContentViewModel: ObservableObject {
         @Published var progress: Double = -0.1
         @Published var showError: Bool = false
         
-        
         func parseDoc() async {
             var newFile: String = ""
-            let custIDs = custIDs.trimmingCharacters(in: .whitespaces).components(separatedBy: ",")
+            let custIDs = custIDs.trimmingAllSpaces().components(separatedBy: ",")
             var rows = document.message.components(separatedBy: "\n")
             newFile.append("\(rows.removeFirst())\n")
             self.progress = 0

@@ -38,7 +38,6 @@ struct FileImportIndicator: View {
         } else {
             Text("")
                 .onAppear(){
-                    print("anything")
                     self.checkScale = 0.0
                 }
         }
