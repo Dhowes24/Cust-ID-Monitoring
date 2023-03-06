@@ -15,13 +15,18 @@ struct FileImportIndicator: View {
         if (fileImported) {
                 HStack(alignment: .top){
                     Spacer()
-                    Image(systemName: "checkmark.circle.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20)
-                        .foregroundColor(.green)
-                        .scaleEffect(checkScale)
-                        .animation(.interpolatingSpring(stiffness: 170, damping: 13), value: checkScale)
+                    ZStack{
+                        Circle()
+                            .foregroundColor(.white)
+                            .frame(width: 20)
+                        Image(systemName: "checkmark.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20)
+                            .foregroundColor(.green)
+                            .scaleEffect(checkScale)
+                            .animation(.interpolatingSpring(stiffness: 170, damping: 13), value: checkScale)
+                    }
                 }
                 .frame(height: 130,alignment: .top)
                 Spacer()

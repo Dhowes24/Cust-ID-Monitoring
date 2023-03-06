@@ -9,8 +9,7 @@ import Foundation
 import SwiftUI
 
 
-extension ContentView {
-    @MainActor class ContentViewModel: ObservableObject {
+class ContentViewModel: ObservableObject {
         
         @Published var custIDs: String = ""
         @Published var document: CSVDocument = CSVDocument(message: "")
@@ -25,7 +24,7 @@ extension ContentView {
             var newFile: String = ""
             let custIDs = custIDs.trimmingCharacters(in: .whitespaces).components(separatedBy: ",")
             var rows = document.message.components(separatedBy: "\n")
-            newFile.append(rows.removeFirst())
+            newFile.append("\(rows.removeFirst())\n")
             self.progress = 0
             
             for row in rows {
@@ -37,10 +36,11 @@ extension ContentView {
                     newFile.append("\(row)\n")
                 }
             }
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 self.progress = 1.1
             }
             document.message = newFile
         }
     }
-}
+

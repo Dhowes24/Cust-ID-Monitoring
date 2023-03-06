@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject private var vm = ContentViewModel()
-    @FetchRequest (sortDescriptors: []) var CustIds: FetchedResults<CustID>
     
     var body: some View {
         VStack {
@@ -34,7 +33,7 @@ struct ContentView: View {
             }
             .padding(20)
             
-            TextField("Comma Separated Cust IDs", text: $vm.custIDs, axis: .vertical)
+            TextField("Comma Separated Cust IDs \"No Commas\"", text: $vm.custIDs, axis: .vertical)
                 .frame(height: 205)
                 .lineLimit(5, reservesSpace: true)
                 .padding([.leading, .trailing], 4)
@@ -60,33 +59,15 @@ struct ContentView: View {
         .sheet(isPresented: $vm.showError) {
             ErrorView()
         }
-        .fileExporter(
-            isPresented: $vm.isExporting,
-            document: vm.document,
-            contentType: .commaSeparatedText,
-            defaultFilename: "Parsed Report",
-            onCompletion: { result in
-                if case .success = result {
-                } else {
-                    vm.showError = true
-                }
-            }
+        .modifier(
+            FileSystems(
+                importing: $vm.isImporting,
+                exporting: $vm.isExporting,
+                document: $vm.document,
+                showError: $vm.showError,
+                fileImported: $vm.fileImported
+            )
         )
-        .fileImporter(
-            isPresented: $vm.isImporting,
-            allowedContentTypes: [.commaSeparatedText],
-            allowsMultipleSelection: false
-        ) { result in
-            do {
-                guard let selectedFile: URL = try result.get().first else { return }
-                guard let message = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
-                
-                vm.document.message = message
-                vm.fileImported = true
-            } catch {
-                vm.showError = true
-            }
-        }
     }
     
 }
