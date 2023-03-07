@@ -33,7 +33,7 @@ struct ContentView: View {
             }
             .padding(20)
             
-            TextField("Comma Separated Cust IDs \"No Commas\"", text: $vm.custIDs, axis: .vertical)
+            TextField("Weekly Comma Separated Cust IDs \"No Quotes\"", text: $vm.custIDs, axis: .vertical)
                 .frame(height: 205)
                 .lineLimit(5, reservesSpace: true)
                 .padding([.leading, .trailing], 4)

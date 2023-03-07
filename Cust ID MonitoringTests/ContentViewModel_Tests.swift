@@ -12,7 +12,7 @@ final class ContentViewModel_Tests: XCTestCase {
     
     var vm: ContentViewModel?
 
-    override func setUpWithError() throws {
+    @MainActor override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         vm = ContentViewModel()
         
@@ -25,12 +25,12 @@ final class ContentViewModel_Tests: XCTestCase {
         vm?.document = CSVDocument(message: mockDataMessage)
     }
 
-    override func tearDownWithError() throws {
+    @MainActor override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         vm = nil
     }
 
-    func test_parsesIdsFromCSV() async throws {
+    @MainActor func test_parsesIdsFromCSV() async throws {
        //Given
         let randId1 = String(Int.random(in: 1..<9))
         let randId2 = String(Int.random(in: 1..<9))
@@ -50,7 +50,7 @@ final class ContentViewModel_Tests: XCTestCase {
         
     }
     
-    func test_doNotParseOtherIdsFromCSV() async throws {
+    @MainActor func test_doNotParseOtherIdsFromCSV() async throws {
         //Given
         let mockWeeklyIds = "0,1,2,3,4"
         vm?.custIDs = mockWeeklyIds
