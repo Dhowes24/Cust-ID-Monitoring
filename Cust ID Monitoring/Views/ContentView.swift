@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject private var vm = ContentViewModel()
+    @State var infoToggle: Bool = false
     
     var body: some View {
         VStack {
@@ -17,44 +18,34 @@ struct ContentView: View {
                     Text("Upload Redash .csv Reports")
                     
                     FileImportRow(
+                        confirmFile: vm.confirmFile,
                         reportName: "Cancelled Orders & Validation Failures By Order",
-                        importing: $vm.healthImporting,
-                        imported: $vm.healthImported,
-                        doc: $vm.healthDoc,
-                        showError: $vm.showError,
-                        wrongFile: vm.healthWrongFile,
-                        confirmFile: vm.ConfirmFile)
+                        report: $vm.healthReport,
+                        showError: $vm.showError)
                     
                     FileImportRow(
+                        confirmFile: vm.confirmFile,
                         reportName: "Most Recent Menu Ingestions",
-                        importing: $vm.ingestionImporting,
-                        imported: $vm.ingestionImported,
-                        doc: $vm.ingestionDoc,
-                        showError: $vm.showError,
-                        wrongFile: vm.ingestionWrongFile,
-                        confirmFile: vm.ConfirmFile)
-                    
+                        report: $vm.ingestionReport,
+                        showError: $vm.showError)
                     FileImportRow(
+                        confirmFile: vm.confirmFile,
                         reportName: "Live Locations by Partner",
-                        importing: $vm.liveImporting,
-                        imported: $vm.liveImported,
-                        doc: $vm.liveDoc,
-                        showError: $vm.showError,
-                        wrongFile: vm.liveWrongFile,
-                        confirmFile: vm.ConfirmFile)
+                        report: $vm.liveReport,
+                        showError: $vm.showError)
                     
                 }
                 Spacer()
                 VStack {
                     Text("Download Parsed .csv")
                     Spacer()
-                    FileButton(activated: $vm.isExporting,progress: vm.progress)
+                    FileExportButton(activated: $vm.exportReport.transferring,progress: vm.progress)
                 }
                 .frame(width: 110, height: 180)
                 .offset(y: -18)
                 .modifier(FileExporter(
-                    exporting: $vm.isExporting,
-                    doc: $vm.exportDoc,
+                    exporting: $vm.exportReport.transferring,
+                    doc: $vm.exportReport.doc,
                     showError: $vm.showError)
                 )
             }
@@ -86,6 +77,10 @@ struct ContentView: View {
         .sheet(isPresented: $vm.showError) {
             ErrorView()
         }
+        .sheet(isPresented: $infoToggle, content: {
+            InfoView()
+        })
+        .modifier(ToolbarView(infoToggle: $infoToggle))
     }
     
 }

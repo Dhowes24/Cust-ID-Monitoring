@@ -14,12 +14,15 @@
 		6B34B0A3299FFB3E00CE7FB1 /* CSVDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34B0A2299FFB3E00CE7FB1 /* CSVDocument.swift */; };
 		6B34B0A529A0063000CE7FB1 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34B0A429A0063000CE7FB1 /* ContentViewModel.swift */; };
 		6B34B0A829A0279D00CE7FB1 /* ProgressTrackerViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34B0A729A0279D00CE7FB1 /* ProgressTrackerViewComponent.swift */; };
-		6B34B0AE29A0305500CE7FB1 /* FileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34B0AD29A0305500CE7FB1 /* FileButton.swift */; };
+		6B34B0AE29A0305500CE7FB1 /* FileExportButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34B0AD29A0305500CE7FB1 /* FileExportButton.swift */; };
 		6B34B0B029A0495E00CE7FB1 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34B0AF29A0495E00CE7FB1 /* ErrorView.swift */; };
 		6B34B0B229A526BE00CE7FB1 /* FileImportIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34B0B129A526BE00CE7FB1 /* FileImportIndicator.swift */; };
 		6B3E92C729B91CBB0033FB8A /* FileExportViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92C629B91CBB0033FB8A /* FileExportViewModifier.swift */; };
 		6B3E92C929B91F5A0033FB8A /* FileImportButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92C829B91F5A0033FB8A /* FileImportButton.swift */; };
 		6B3E92CB29B96A8C0033FB8A /* FileImportRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92CA29B96A8C0033FB8A /* FileImportRow.swift */; };
+		6B3E92CF29BBA6AC0033FB8A /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92CE29BBA6AC0033FB8A /* ReportModel.swift */; };
+		6B3E92D129BBB0400033FB8A /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92D029BBB0400033FB8A /* ToolbarView.swift */; };
+		6B3E92D329BBB2210033FB8A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92D229BBB2210033FB8A /* InfoView.swift */; };
 		6BD784ED29B12636007D986C /* FileImportViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD784EC29B12636007D986C /* FileImportViewModifier.swift */; };
 		6BD784FF29B5B4C0007D986C /* ContentViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD784EF29B5B3A6007D986C /* ContentViewModel_Tests.swift */; };
 /* End PBXBuildFile section */
@@ -44,12 +47,15 @@
 		6B34B0A2299FFB3E00CE7FB1 /* CSVDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDocument.swift; sourceTree = "<group>"; };
 		6B34B0A429A0063000CE7FB1 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		6B34B0A729A0279D00CE7FB1 /* ProgressTrackerViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTrackerViewComponent.swift; sourceTree = "<group>"; };
-		6B34B0AD29A0305500CE7FB1 /* FileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileButton.swift; sourceTree = "<group>"; };
+		6B34B0AD29A0305500CE7FB1 /* FileExportButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExportButton.swift; sourceTree = "<group>"; };
 		6B34B0AF29A0495E00CE7FB1 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		6B34B0B129A526BE00CE7FB1 /* FileImportIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportIndicator.swift; sourceTree = "<group>"; };
 		6B3E92C629B91CBB0033FB8A /* FileExportViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExportViewModifier.swift; sourceTree = "<group>"; };
 		6B3E92C829B91F5A0033FB8A /* FileImportButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportButton.swift; sourceTree = "<group>"; };
 		6B3E92CA29B96A8C0033FB8A /* FileImportRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportRow.swift; sourceTree = "<group>"; };
+		6B3E92CE29BBA6AC0033FB8A /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
+		6B3E92D029BBB0400033FB8A /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		6B3E92D229BBB2210033FB8A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		6BD784EC29B12636007D986C /* FileImportViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportViewModifier.swift; sourceTree = "<group>"; };
 		6BD784EF29B5B3A6007D986C /* ContentViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel_Tests.swift; sourceTree = "<group>"; };
 		6BD784F629B5B4BD007D986C /* Cust ID MonitoringTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cust ID MonitoringTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				6B34B091299FF47500CE7FB1 /* Cust_ID_MonitoringApp.swift */,
-				6B34B0A2299FFB3E00CE7FB1 /* CSVDocument.swift */,
 				6BD784EB29AFCA70007D986C /* Models */,
 				6B34B0AB29A02C4700CE7FB1 /* Views */,
 				6B34B0AC29A02C6000CE7FB1 /* ViewModels */,
@@ -117,11 +122,8 @@
 		6B34B0A629A0277F00CE7FB1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				6B34B0A729A0279D00CE7FB1 /* ProgressTrackerViewComponent.swift */,
-				6B34B0AD29A0305500CE7FB1 /* FileButton.swift */,
-				6B3E92C829B91F5A0033FB8A /* FileImportButton.swift */,
-				6B34B0B129A526BE00CE7FB1 /* FileImportIndicator.swift */,
-				6B3E92CA29B96A8C0033FB8A /* FileImportRow.swift */,
+				6B3E92CD29BBA2320033FB8A /* FileExport */,
+				6B3E92CC29BBA2190033FB8A /* FileImport */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -131,8 +133,9 @@
 			children = (
 				6B34B093299FF47500CE7FB1 /* ContentView.swift */,
 				6B34B0AF29A0495E00CE7FB1 /* ErrorView.swift */,
+				6B3E92D229BBB2210033FB8A /* InfoView.swift */,
 				6B34B0A629A0277F00CE7FB1 /* Components */,
-				6BD784EE29B1264B007D986C /* ViewModifiers */,
+				6B3E92D029BBB0400033FB8A /* ToolbarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -145,20 +148,34 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		6B3E92CC29BBA2190033FB8A /* FileImport */ = {
+			isa = PBXGroup;
+			children = (
+				6B3E92C829B91F5A0033FB8A /* FileImportButton.swift */,
+				6B34B0B129A526BE00CE7FB1 /* FileImportIndicator.swift */,
+				6BD784EC29B12636007D986C /* FileImportViewModifier.swift */,
+				6B3E92CA29B96A8C0033FB8A /* FileImportRow.swift */,
+			);
+			path = FileImport;
+			sourceTree = "<group>";
+		};
+		6B3E92CD29BBA2320033FB8A /* FileExport */ = {
+			isa = PBXGroup;
+			children = (
+				6B34B0A729A0279D00CE7FB1 /* ProgressTrackerViewComponent.swift */,
+				6B34B0AD29A0305500CE7FB1 /* FileExportButton.swift */,
+				6B3E92C629B91CBB0033FB8A /* FileExportViewModifier.swift */,
+			);
+			path = FileExport;
+			sourceTree = "<group>";
+		};
 		6BD784EB29AFCA70007D986C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6B34B0A2299FFB3E00CE7FB1 /* CSVDocument.swift */,
+				6B3E92CE29BBA6AC0033FB8A /* ReportModel.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		6BD784EE29B1264B007D986C /* ViewModifiers */ = {
-			isa = PBXGroup;
-			children = (
-				6BD784EC29B12636007D986C /* FileImportViewModifier.swift */,
-				6B3E92C629B91CBB0033FB8A /* FileExportViewModifier.swift */,
-			);
-			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		6BD784F729B5B4BD007D986C /* Cust ID MonitoringTests */ = {
@@ -273,13 +290,16 @@
 				6B3E92CB29B96A8C0033FB8A /* FileImportRow.swift in Sources */,
 				6BD784ED29B12636007D986C /* FileImportViewModifier.swift in Sources */,
 				6B3E92C729B91CBB0033FB8A /* FileExportViewModifier.swift in Sources */,
-				6B34B0AE29A0305500CE7FB1 /* FileButton.swift in Sources */,
+				6B34B0AE29A0305500CE7FB1 /* FileExportButton.swift in Sources */,
+				6B3E92CF29BBA6AC0033FB8A /* ReportModel.swift in Sources */,
+				6B3E92D129BBB0400033FB8A /* ToolbarView.swift in Sources */,
 				6B3E92C929B91F5A0033FB8A /* FileImportButton.swift in Sources */,
 				6B34B094299FF47500CE7FB1 /* ContentView.swift in Sources */,
 				6B34B0A3299FFB3E00CE7FB1 /* CSVDocument.swift in Sources */,
 				6B34B0B229A526BE00CE7FB1 /* FileImportIndicator.swift in Sources */,
 				6B34B0B029A0495E00CE7FB1 /* ErrorView.swift in Sources */,
 				6B34B0A829A0279D00CE7FB1 /* ProgressTrackerViewComponent.swift in Sources */,
+				6B3E92D329BBB2210033FB8A /* InfoView.swift in Sources */,
 				6B34B092299FF47500CE7FB1 /* Cust_ID_MonitoringApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

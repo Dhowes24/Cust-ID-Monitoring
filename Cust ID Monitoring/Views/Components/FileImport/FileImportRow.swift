@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct FileImportRow: View {
-    var reportName: String
-    @Binding var importing: Bool
-    @Binding var imported: Bool
-    @Binding var doc: CSVDocument
-    @Binding var showError: Bool
-    var wrongFile: Bool
     var confirmFile: @MainActor() -> ()
+    var reportName: String
+    @Binding var report: report
+    @Binding var showError: Bool
+    
+    
     
     var body: some View {
         HStack{
@@ -23,17 +22,17 @@ struct FileImportRow: View {
                 .frame(width: 80)
             Spacer()
             ZStack(alignment: .trailing){
-                FileImportButton(activate: $importing)
+                FileImportButton(activate: $report.transferring)
                 
-                FileImportIndicator(fileImported: imported, wrongFile: wrongFile)
+                FileImportIndicator(fileImported: report.transferred, wrongFile: report.incompatible)
             }
         }
         .frame( width: 200, height: 100)
         .modifier(FileImporter(
-            importing: $importing,
-            doc: $doc,
+            importing: $report.transferring,
+            doc: $report.doc,
             showError: $showError,
-            fileImported: $imported,
+            fileImported: $report.transferred,
             confirmFile: confirmFile)
         )
     }
@@ -42,13 +41,13 @@ struct FileImportRow: View {
 struct FileImportRow_Previews: PreviewProvider {
     static var previews: some View {
         FileImportRow(
-            reportName: "Report Name",
-            importing: .constant(true),
-            imported: .constant(true),
-            doc: .constant(CSVDocument(message: "")),
-            showError: .constant(true),
-            wrongFile: false) {
+            confirmFile: {
                 print("nothing")
-            }
+            },
+            reportName: "String",
+            report: .constant(report()),
+            showError: .constant(false)
+        )
+        
     }
 }

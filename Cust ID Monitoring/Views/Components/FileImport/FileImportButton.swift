@@ -3,18 +3,12 @@
 //  Cust ID Monitoring
 //
 //  Created by Derek Howes on 3/8/23.
-//
-//
-//  FileButton.swift
-//  Cust ID Monitoring
-//
-//  Created by Derek Howes on 2/17/23.
-//
+
 
 import Foundation
 import SwiftUI
 
-struct importButtonStyle: ButtonStyle {
+struct ImportButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .overlay {
@@ -55,7 +49,14 @@ struct FileImportButton: View {
                 
             }
         }
-        .buttonStyle(MyButtonStyle())
+        .buttonStyle(ImportButtonStyle())
+        .onHover { inside in
+            if inside {
+                NSCursor.pointingHand.push()
+            } else {
+                NSCursor.pop()
+            }
+        }
 
 
 

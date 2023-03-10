@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct MyButtonStyle: ButtonStyle {
+struct ExportButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
@@ -27,7 +27,7 @@ struct MyButtonStyle: ButtonStyle {
     }
 }
 
-struct FileButton: View {
+struct FileExportButton: View {
     @Binding var activated: Bool
     var progress: Double
     @State var shrink = 1.0
@@ -80,12 +80,12 @@ struct FileButton: View {
             }
         }
         .disabled(progress == -0.1)
-        .buttonStyle(MyButtonStyle())
+        .buttonStyle(ExportButtonStyle())
     }
 }
 
-struct FileButton_Previews: PreviewProvider {
+struct FileExportButton_Previews: PreviewProvider {
     static var previews: some View {
-        FileButton(activated: .constant(false),progress: -0.1)
+        FileExportButton(activated: .constant(false),progress: -0.1)
     }
 }
