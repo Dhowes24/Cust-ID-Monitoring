@@ -28,16 +28,15 @@ struct MyButtonStyle: ButtonStyle {
 }
 
 struct FileButton: View {
-    @Binding var importOrExport: Bool
+    @Binding var activated: Bool
     var progress: Double
-    let imageName: String
     @State var shrink = 1.0
     @State var grow = 0.0
     
     var body: some View {
         
         Button {
-            importOrExport = true
+            activated = true
         } label: {
             ZStack{
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
@@ -57,7 +56,7 @@ struct FileButton: View {
                             }
                         }
                 } else {
-                    Image(systemName: imageName)
+                    Image(systemName: "doc.text")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 50)
@@ -87,6 +86,6 @@ struct FileButton: View {
 
 struct FileButton_Previews: PreviewProvider {
     static var previews: some View {
-        FileButton(importOrExport: .constant(false),progress: -0.1, imageName: "tray.and.arrow.down")
+        FileButton(activated: .constant(false),progress: -0.1)
     }
 }

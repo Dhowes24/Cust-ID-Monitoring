@@ -14,22 +14,49 @@ struct ContentView: View {
         VStack {
             HStack {
                 VStack{
-                    Text("Upload .csv")
-                    Spacer()
-                    ZStack{
-                        FileButton(importOrExport: $vm.isImporting, progress: -1.0, imageName: "doc.badge.plus")
-                        
-                        FileImportIndicator(fileImported: vm.fileImported)
-                    }
+                    Text("Upload Redash .csv Reports")
+                    
+                    FileImportRow(
+                        reportName: "Cancelled Orders & Validation Failures By Order",
+                        importing: $vm.healthImporting,
+                        imported: $vm.healthImported,
+                        doc: $vm.healthDoc,
+                        showError: $vm.showError,
+                        wrongFile: vm.healthWrongFile,
+                        confirmFile: vm.ConfirmFile)
+                    
+                    FileImportRow(
+                        reportName: "Most Recent Menu Ingestions",
+                        importing: $vm.ingestionImporting,
+                        imported: $vm.ingestionImported,
+                        doc: $vm.ingestionDoc,
+                        showError: $vm.showError,
+                        wrongFile: vm.ingestionWrongFile,
+                        confirmFile: vm.ConfirmFile)
+                    
+                    FileImportRow(
+                        reportName: "Live Locations by Partner",
+                        importing: $vm.liveImporting,
+                        imported: $vm.liveImported,
+                        doc: $vm.liveDoc,
+                        showError: $vm.showError,
+                        wrongFile: vm.liveWrongFile,
+                        confirmFile: vm.ConfirmFile)
+                    
                 }
-                .frame( width: 110, height: 150)
                 Spacer()
                 VStack {
                     Text("Download Parsed .csv")
                     Spacer()
-                    FileButton(importOrExport: $vm.isExporting,progress: vm.progress, imageName: "doc.text")
+                    FileButton(activated: $vm.isExporting,progress: vm.progress)
                 }
-                .frame(width: 110, height: 150)
+                .frame(width: 110, height: 180)
+                .offset(y: -18)
+                .modifier(FileExporter(
+                    exporting: $vm.isExporting,
+                    doc: $vm.exportDoc,
+                    showError: $vm.showError)
+                )
             }
             .padding(20)
             
@@ -47,27 +74,18 @@ struct ContentView: View {
                 Text("Generate Parsed Report")
             }
             .onHover { inside in
-                if inside && (vm.fileImported || vm.custIDs != "") {
+                if inside && vm.readyToParse() {
                     NSCursor.pointingHand.push()
                 } else {
                     NSCursor.pop()
                 }
             }
-            .disabled(!vm.fileImported || vm.custIDs == "")
+            .disabled(!vm.readyToParse())
         }
         .padding()
         .sheet(isPresented: $vm.showError) {
             ErrorView()
         }
-        .modifier(
-            FileSystems(
-                importing: $vm.isImporting,
-                exporting: $vm.isExporting,
-                document: $vm.document,
-                showError: $vm.showError,
-                fileImported: $vm.fileImported
-            )
-        )
     }
     
 }
