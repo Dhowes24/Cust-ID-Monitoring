@@ -37,13 +37,16 @@ struct BulletPoint: View {
 struct NumberedPoint: View {
     let number: String
     var body: some View {
-        Text(number)
-            .font(.system(size: 15))
-            .fontWeight(.bold)
-        Circle()
-            .frame(width: 5)
-            .offset(x: -3, y: 10)
+        HStack{
+            Text(number)
+                .font(.system(size: 15))
+                .fontWeight(.bold)
+            Circle()
+                .frame(width: 5)
+                .offset(x: -3, y: 5)
+        }
     }
+    
 }
 
 struct InfoView: View {
@@ -88,7 +91,7 @@ struct InfoView: View {
                         BulletPoint(text: "Most Recent Menu Ingestions by Cust_ID")
                         
                     }
-                    .padding([.top,.bottom], 5)
+                    .padding(.vertical, 5)
                     
                     Text("Upon upload the file will either be marked as compatible or not")
                     
@@ -110,21 +113,26 @@ struct InfoView: View {
                     
                     Text("The app looks through the .CSV headers to make this distinction")
                 }
+                .fixedSize(horizontal: false, vertical: true)
                 .modifier(BackgroundRectangle())
                 
             }
-            .frame(width: 400)
+            .frame(maxWidth: .infinity)
+            .padding()
             
             HStack(alignment: .top){
                 NumberedPoint(number: "2")
                 VStack(alignment: .leading){
                     Text("The text input field must be populated to enabled the 'Generate Parsed Report' Button below")
-                        .padding(5)
+                        .padding(.vertical ,5)
                     Text("All Whitespace and commas will be filtered out of the message when parsing, so there is no need to go through and clean it up")
-                        .padding(5)
-                }.modifier(BackgroundRectangle())
+                        .padding(.vertical ,5)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                .modifier(BackgroundRectangle())
             }
-            .frame(width: 400)
+            .frame(maxWidth: .infinity)
+            .padding()
             
             Spacer()
         }

@@ -27,10 +27,10 @@ extension String {
     @Published var liveReport: report = report()
     @Published var exportReport: report = report()
     
-    func confirmFile() {
-        confirmReport(report: &healthReport, confirmationString: "order_uuid")
-        confirmReport(report: &ingestionReport, confirmationString: "start_time")
-        confirmReport(report: &liveReport, confirmationString: "financial_status")
+    func validateReports() {
+        confirmReport(report: &healthReport, confirmationString: "order_number")
+        confirmReport(report: &ingestionReport, confirmationString: "request_id")
+        confirmReport(report: &liveReport, confirmationString: "merchant_status")
     }
     
     func confirmReport(report: inout report, confirmationString: String) {
@@ -38,7 +38,7 @@ extension String {
             let rows = report.doc.message.components(separatedBy: "\n")
             report.rowCount = rows.count
             let columns = rows[0].components(separatedBy: ",")
-            report.incompatible = !(columns[2] == confirmationString)
+             report.incompatible = !(columns[1] == confirmationString)
         }
     }
     
@@ -69,7 +69,7 @@ extension String {
         }
     }
     
-    func parseDoc() async {
+    func generateReport() async {
         data.removeAll()
         exportReport.doc.message = ""
         self.progress = 0.0
@@ -95,7 +95,11 @@ extension String {
     }
     
     func readyToParse() -> Bool {
-        return (liveReport.transferred || healthReport.transferred || ingestionReport.transferred) && custIDs != ""
+        return (
+            (liveReport.transferred && !liveReport.incompatible) ||
+            (healthReport.transferred && !healthReport.incompatible) ||
+            (ingestionReport.transferred && !ingestionReport.incompatible)
+        ) && custIDs != ""
     }
 }
 

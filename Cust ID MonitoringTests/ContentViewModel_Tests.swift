@@ -22,7 +22,8 @@ final class ContentViewModel_Tests: XCTestCase {
             mockDataMessage.append("\n\(i)")
         }
         
-        vm?.document = CSVDocument(message: mockDataMessage)
+        vm?.healthReport.doc = CSVDocument(message: mockDataMessage)
+        vm?.healthReport.transferred = true
     }
 
     @MainActor override func tearDownWithError() throws {
@@ -30,7 +31,7 @@ final class ContentViewModel_Tests: XCTestCase {
         vm = nil
     }
 
-    @MainActor func test_parsesIdsFromCSV() async throws {
+    @MainActor func test_parseReport() async throws {
        //Given
         let randId1 = String(Int.random(in: 1..<9))
         let randId2 = String(Int.random(in: 1..<9))
@@ -39,9 +40,9 @@ final class ContentViewModel_Tests: XCTestCase {
         vm?.custIDs = mockWeeklyIds
 
         //When
-        await vm?.parseDoc()
+        await vm?.generateReport()
         let rows = ["FirstRow",randId1,randId2,randId3]
-        let testRows = vm?.document.message.components(separatedBy: "\n")
+        let testRows = vm?.healthReport.doc.message.components(separatedBy: "\n")
         
         //Let
         for i in 0..<rows.count {
@@ -50,20 +51,63 @@ final class ContentViewModel_Tests: XCTestCase {
         
     }
     
-    @MainActor func test_doNotParseOtherIdsFromCSV() async throws {
+    @MainActor func test_parseReportNoExtraniousIds() async throws {
         //Given
         let mockWeeklyIds = "0,1,2,3,4"
         vm?.custIDs = mockWeeklyIds
 
         //When
-        await vm?.parseDoc()
-        let testRows = vm?.document.message.components(separatedBy: "\n")
+        await vm?.generateReport()
+        let testRows = vm?.exportReport.doc.message.components(separatedBy: "\n")
 
         //Let
         for i in 5...10 {
             XCTAssertFalse(testRows?.contains(String(i)) ?? true)
         }
     }
+    
+    @MainActor func test_onlyOneExportReportHeaderPerCustID() async throws {
+        //Given
+        let mockWeeklyIds = "0,1,2,3,4"
+        vm?.custIDs = mockWeeklyIds
+        
+        let mockHealthReportResults = "FirstRow\n0\n1\n1\n2\n2\n3\n4\n"
+        vm?.healthReport.doc = CSVDocument(message: mockHealthReportResults)
+        vm?.healthReport.transferred = true
+        vm?.healthReport.rowCount = 8
+        
+        let mockOtherReportResults = "FirstRow\n0\n1\n2\n3\n4\n"
+        vm?.liveReport.doc = CSVDocument(message: mockOtherReportResults)
+        vm?.liveReport.transferred = true
+        vm?.liveReport.rowCount = 8
+        
+        vm?.ingestionReport.doc = CSVDocument(message: mockOtherReportResults)
+        vm?.ingestionReport.transferred = true
+        vm?.ingestionReport.rowCount = 8
+
+        //When
+        await vm?.generateReport()
+        let testRows = vm?.exportReport.doc.message.components(separatedBy: "\n")
+
+        //Let
+        var cancelledOrdersCount = 0
+        var liveIntegrationCount = 0
+        var menuIngestionCount = 0
+        
+        for row in testRows! {
+            let testColumns = row.components(separatedBy: ",")
+            if(testColumns[0] == "Cancelled Orders") {cancelledOrdersCount += 1}
+            if(testColumns[0] == "Integration Live") {liveIntegrationCount += 1}
+            if(testColumns[0] == "Latest Ingestion") {menuIngestionCount += 1}
+        }
+        
+        XCTAssertTrue(vm?.exportReport.doc.message != "")
+        XCTAssertTrue(cancelledOrdersCount <= 5 && liveIntegrationCount <= 5 && menuIngestionCount <= 5)
+    }
+    
+    //Gives Empty message if No Cust IDs are found
+    
+    //Validate Succeeds and Fails According
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

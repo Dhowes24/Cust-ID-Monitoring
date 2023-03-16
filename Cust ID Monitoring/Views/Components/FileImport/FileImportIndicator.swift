@@ -20,7 +20,7 @@ struct FileImportIndicator: View {
                             .font(.system(size: 8))
                             .foregroundColor(.red)
                             .frame(width: 40)
-                            .offset(x:0, y:10)
+                            .offset(x:-40, y:10)
 
                     }
                     Spacer()

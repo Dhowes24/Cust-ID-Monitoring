@@ -18,18 +18,18 @@ struct ContentView: View {
                     Text("Upload Redash .csv Reports")
                     
                     FileImportRow(
-                        confirmFile: vm.confirmFile,
+                        confirmFile: vm.validateReports,
                         reportName: "Cancelled Orders & Validation Failures By Order",
                         report: $vm.healthReport,
                         showError: $vm.showError)
                     
                     FileImportRow(
-                        confirmFile: vm.confirmFile,
+                        confirmFile: vm.validateReports,
                         reportName: "Most Recent Menu Ingestions",
                         report: $vm.ingestionReport,
                         showError: $vm.showError)
                     FileImportRow(
-                        confirmFile: vm.confirmFile,
+                        confirmFile: vm.validateReports,
                         reportName: "Live Locations by Partner",
                         report: $vm.liveReport,
                         showError: $vm.showError)
@@ -59,7 +59,7 @@ struct ContentView: View {
             
             Button {
                 Task{
-                    await vm.parseDoc()
+                    await vm.generateReport()
                 }
             } label: {
                 Text("Generate Parsed Report")

@@ -26,8 +26,20 @@ struct FileImportRow: View {
                 
                 FileImportIndicator(fileImported: report.transferred, wrongFile: report.incompatible)
             }
+            .frame(width: 65)
+            .padding()
+            Button {
+                withAnimation {
+                    report.doc.message = ""
+                    report.transferred = false
+                }
+            } label: {
+                Text("Remove")
+                    .font(.system(size: 8))
+            }
+
         }
-        .frame( width: 200, height: 100)
+        .frame( width: 250, height: 100)
         .modifier(FileImporter(
             importing: $report.transferring,
             doc: $report.doc,
@@ -46,7 +58,7 @@ struct FileImportRow_Previews: PreviewProvider {
             },
             reportName: "String",
             report: .constant(report()),
-            showError: .constant(false)
+            showError: .constant(true)
         )
         
     }
