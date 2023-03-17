@@ -19,7 +19,7 @@ struct FileImportIndicator: View {
                         Text("This Report Has Incorrect Column Headers")
                             .font(.system(size: 8))
                             .foregroundColor(.red)
-                            .frame(width: 40)
+                            .frame(width: 37)
                             .offset(x:-40, y:10)
 
                     }
@@ -28,26 +28,22 @@ struct FileImportIndicator: View {
                         Circle()
                             .foregroundColor(.white)
                             .frame(width: 20)
-                            .scaleEffect(checkScale)
-                            .animation(.interpolatingSpring(stiffness: 170, damping: 13), value: checkScale)
                         if wrongFile {
                             Image(systemName: "x.circle.fill")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 20)
                                 .foregroundColor(.red)
-                                .scaleEffect(checkScale)
-                                .animation(.interpolatingSpring(stiffness: 170, damping: 13), value: checkScale)
                         } else {
                             Image(systemName: "checkmark.circle.fill")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 20)
                                 .foregroundColor(.green)
-                                .scaleEffect(checkScale)
-                                .animation(.interpolatingSpring(stiffness: 170, damping: 13), value: checkScale)
                         }
                     }
+                    .scaleEffect(checkScale)
+                    .animation(.interpolatingSpring(stiffness: 170, damping: 13), value: checkScale)
                 }
                 .frame(height: 80,alignment: .top)
                 Spacer()

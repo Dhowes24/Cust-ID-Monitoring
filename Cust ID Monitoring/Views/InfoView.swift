@@ -125,7 +125,7 @@ struct InfoView: View {
                 VStack(alignment: .leading){
                     Text("The text input field must be populated to enabled the 'Generate Parsed Report' Button below")
                         .padding(.vertical ,5)
-                    Text("All Whitespace and commas will be filtered out of the message when parsing, so there is no need to go through and clean it up")
+                    Text("All whitespace and new lines will be filtered out of the message when parsing, so there is no need to go through and clean it up")
                         .padding(.vertical ,5)
                 }
                 .fixedSize(horizontal: false, vertical: true)

@@ -17,7 +17,8 @@ extension String {
 @MainActor class ContentViewModel: ObservableObject {
     
     @Published var custIDs: String = ""
-    var data = [String: String]()
+    var parsedData = [String: String]()
+
     @Published var progress: Double = -0.1
     @Published var showError: Bool = false
     var totalRows: Int = 0
@@ -42,9 +43,8 @@ extension String {
         }
     }
     
-    func parseReport(report: inout report, sectionTitle: String) {
+    func parseReport(report: inout report, sectionTitle: String, custIDs: [String]) {
         if report.transferred && !report.incompatible {
-            let custIDs = custIDs.trimmingAllSpaces().components(separatedBy: ",")
             var rows = report.doc.message.components(separatedBy: "\n")
             let header = "\(rows.removeFirst())"
             for row in rows {
@@ -53,15 +53,15 @@ extension String {
                 }
                 let columns = row.components(separatedBy: ",")
                 if custIDs.contains(columns[0]) {
-                    if data[columns[0]] == nil {
-                        data[columns[0]] = "\n\(sectionTitle),\(header),\(row)\n"
+                    if parsedData[columns[0]] == nil {
+                        parsedData[columns[0]] = "\n\(sectionTitle),\(header),\(row)\n"
+                        report.dict[columns[0]] = true
                     } else {
                         if sectionTitle == "Cancelled Orders"{
-                            data[columns[0]] = "\(data[columns[0]] ?? ""),\(row)\n"
-
+                            parsedData[columns[0]] = "\(parsedData[columns[0]] ?? ""),\(row)\n"
                         } else {
-                            data[columns[0]] = "\(data[columns[0]] ?? "")\(sectionTitle),\(header),\(row)\n"
-
+                            parsedData[columns[0]] = "\(parsedData[columns[0]] ?? "")\(sectionTitle),\(header),\(row)\n"
+                            report.dict[columns[0]] = true
                         }
                     }
                 }
@@ -70,19 +70,29 @@ extension String {
     }
     
     func generateReport() async {
-        data.removeAll()
+        parsedData.removeAll()
         exportReport.doc.message = ""
         self.progress = 0.0
         totalRows = healthReport.rowCount + ingestionReport.rowCount + liveReport.rowCount
+        let custIDs = custIDs.trimmingAllSpaces().components(separatedBy: ",")
+        for id in custIDs {
+            healthReport.dict[id] = false
+            ingestionReport.dict[id] = false
+            liveReport.dict[id] = false
+        }
         
-        parseReport(report: &healthReport, sectionTitle: "Cancelled Orders")
-        parseReport(report: &ingestionReport, sectionTitle: "Latest Ingestion")
-        parseReport(report: &liveReport, sectionTitle: "Integration Live")
+        parseReport(report: &healthReport, sectionTitle: "Cancelled Orders", custIDs: custIDs)
+        parseReport(report: &ingestionReport, sectionTitle: "Latest Ingestion", custIDs: custIDs)
+        parseReport(report: &liveReport, sectionTitle: "Integration Live", custIDs: custIDs)
 
         
-        for row in data.values {
+        for row in parsedData.values {
             exportReport.doc.message.append("\(row)")
         }
+        
+        notFoundIds(header: "Ids Without Cancelled Orders", report: healthReport)
+        notFoundIds(header: "Ids Without Menu Ingestions", report: ingestionReport)
+        notFoundIds(header: "Ids Not Currently Live", report: liveReport)
         
         if exportReport.doc.message == "" {
             exportReport.doc.message.append("No Instances of any given IDs in any give files")
@@ -91,6 +101,18 @@ extension String {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.exportReport.transferred = true
             self.progress = 1.1
+        }
+    }
+    
+    func notFoundIds(header: String, report: report) {
+        if report.doc.message != "" {
+            exportReport.doc.message.append("\n\(header)\n")
+            for (id, present) in report.dict {
+                if !present {
+                    exportReport.doc.message.append(",\(id)\n")
+                }
+            }
+            exportReport.doc.message.append("\n")
         }
     }
     

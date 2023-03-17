@@ -29,10 +29,9 @@ struct FileImportRow: View {
             .frame(width: 65)
             .padding()
             Button {
-                withAnimation {
                     report.doc.message = ""
+                    report.rowCount = 0
                     report.transferred = false
-                }
             } label: {
                 Text("Remove")
                     .font(.system(size: 8))
