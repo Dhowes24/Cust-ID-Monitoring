@@ -13,7 +13,7 @@ struct Cust_ID_MonitoringApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .frame(minWidth: 450, idealWidth: 550, maxWidth: 600, minHeight: 650, idealHeight: 700, maxHeight: 750)
+                .frame(minWidth: 450, idealWidth: 550, maxWidth: 600, minHeight: 750, idealHeight: 750, maxHeight: 750)
         }
         .windowResizability(.contentSize)
     }

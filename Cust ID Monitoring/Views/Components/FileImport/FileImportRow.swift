@@ -19,7 +19,7 @@ struct FileImportRow: View {
         HStack{
             Text(reportName)
                 .font(.system(size: 12))
-                .frame(width: 80)
+                .frame(width: 80,alignment: .leading)
             Spacer()
             ZStack(alignment: .trailing){
                 FileImportButton(activate: $report.transferring)

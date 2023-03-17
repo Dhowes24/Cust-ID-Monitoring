@@ -22,7 +22,6 @@ struct ContentView: View {
                         reportName: "Cancelled Orders & Validation Failures By Order",
                         report: $vm.healthReport,
                         showError: $vm.showError)
-                    
                     FileImportRow(
                         confirmFile: vm.validateReports,
                         reportName: "Most Recent Menu Ingestions",
@@ -32,6 +31,11 @@ struct ContentView: View {
                         confirmFile: vm.validateReports,
                         reportName: "Live Locations by Partner",
                         report: $vm.liveReport,
+                        showError: $vm.showError)
+                    FileImportRow(
+                        confirmFile: vm.validateReports,
+                        reportName: "CIDs Received Orders",
+                        report: $vm.transactingReport,
                         showError: $vm.showError)
                     
                 }
@@ -49,7 +53,7 @@ struct ContentView: View {
                     showError: $vm.showError)
                 )
             }
-            .padding(20)
+            .padding(.horizontal, 20)
             
             TextField("Weekly Comma Separated Cust IDs \"No Quotes\"", text: $vm.custIDs, axis: .vertical)
                 .frame(height: 205)

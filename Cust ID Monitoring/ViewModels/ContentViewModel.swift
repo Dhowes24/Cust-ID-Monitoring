@@ -26,12 +26,15 @@ extension String {
     @Published var healthReport: report = report()
     @Published var ingestionReport: report = report()
     @Published var liveReport: report = report()
+    @Published var transactingReport: report = report()
     @Published var exportReport: report = report()
     
     func validateReports() {
         confirmReport(report: &healthReport, confirmationString: "order_number")
         confirmReport(report: &ingestionReport, confirmationString: "request_id")
         confirmReport(report: &liveReport, confirmationString: "merchant_status")
+        confirmReport(report: &transactingReport, confirmationString: "first_order_date_ct\r")
+
     }
     
     func confirmReport(report: inout report, confirmationString: String) {
@@ -39,7 +42,7 @@ extension String {
             let rows = report.doc.message.components(separatedBy: "\n")
             report.rowCount = rows.count
             let columns = rows[0].components(separatedBy: ",")
-             report.incompatible = !(columns[1] == confirmationString)
+            report.incompatible = !(columns[1].components(separatedBy: "\n")[0] == confirmationString)
         }
     }
     
@@ -52,7 +55,7 @@ extension String {
                     self.progress += (1/Double(totalRows))
                 }
                 let columns = row.components(separatedBy: ",")
-                if custIDs.contains(columns[0]) {
+                if custIDs.contains(columns[0]) && columns[1].count != 1 {
                     if parsedData[columns[0]] == nil {
                         parsedData[columns[0]] = "\n\(sectionTitle),\(header),\(row)\n"
                         report.dict[columns[0]] = true
@@ -79,11 +82,14 @@ extension String {
             healthReport.dict[id] = false
             ingestionReport.dict[id] = false
             liveReport.dict[id] = false
+            transactingReport.dict[id]=false
         }
         
         parseReport(report: &healthReport, sectionTitle: "Cancelled Orders", custIDs: custIDs)
         parseReport(report: &ingestionReport, sectionTitle: "Latest Ingestion", custIDs: custIDs)
         parseReport(report: &liveReport, sectionTitle: "Integration Live", custIDs: custIDs)
+        parseReport(report: &transactingReport, sectionTitle: "First Transaction", custIDs: custIDs)
+
 
         
         for row in parsedData.values {
@@ -93,6 +99,8 @@ extension String {
         notFoundIds(header: "Ids Without Cancelled Orders", report: healthReport)
         notFoundIds(header: "Ids Without Menu Ingestions", report: ingestionReport)
         notFoundIds(header: "Ids Not Currently Live", report: liveReport)
+        notFoundIds(header: "Ids Not Currently Transacting", report: transactingReport)
+
         
         if exportReport.doc.message == "" {
             exportReport.doc.message.append("No Instances of any given IDs in any give files")
@@ -120,7 +128,8 @@ extension String {
         return (
             (liveReport.transferred && !liveReport.incompatible) ||
             (healthReport.transferred && !healthReport.incompatible) ||
-            (ingestionReport.transferred && !ingestionReport.incompatible)
+            (ingestionReport.transferred && !ingestionReport.incompatible) ||
+            (transactingReport.transferred && !transactingReport.incompatible)
         ) && custIDs != ""
     }
 }
