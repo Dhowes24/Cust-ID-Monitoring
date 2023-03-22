@@ -10,6 +10,7 @@ import SwiftUI
 struct FileImportRow: View {
     var confirmFile: @MainActor() -> ()
     var reportName: String
+    var linkDestination: String
     @Binding var report: report
     @Binding var showError: Bool
     
@@ -17,9 +18,13 @@ struct FileImportRow: View {
     
     var body: some View {
         HStack{
-            Text(reportName)
-                .font(.system(size: 12))
-                .frame(width: 80,alignment: .leading)
+            Link(destination: URL(string:linkDestination)!) {
+                Text(reportName)
+                    .font(.system(size: 12))
+                    .frame(width: 80,alignment: .leading)
+                    .multilineTextAlignment(.leading)
+            }
+            
             Spacer()
             ZStack(alignment: .trailing){
                 FileImportButton(activate: $report.transferring)
@@ -55,7 +60,8 @@ struct FileImportRow_Previews: PreviewProvider {
             confirmFile: {
                 print("nothing")
             },
-            reportName: "String",
+            reportName: "Very Long String with Multiple Lines",
+            linkDestination: "ExistingWebsite.com",
             report: .constant(report()),
             showError: .constant(true)
         )
