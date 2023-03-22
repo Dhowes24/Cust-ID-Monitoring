@@ -83,12 +83,13 @@ struct InfoView: View {
             HStack(alignment: .top){
                 NumberedPoint(number: "1")
                 VStack(alignment: .leading){
-                    Text("There are three reports you can upload. At least one report is mandatory for the app to work, but none are specifically required ")
+                    Text("There are four reports you can upload. At least one report is mandatory for the app to work, but none are specifically required ")
                     
                     VStack(alignment: .leading){
                         BulletPoint(text: "Integration Health Detail -> Cancelled Orders & Validation Failures By Order")
                         BulletPoint(text: "Live Locations by Partner")
                         BulletPoint(text: "Most Recent Menu Ingestions by Cust_ID")
+                        BulletPoint(text: "GoPuff CIDs Received Orders")
                         
                     }
                     .padding(.vertical, 5)
