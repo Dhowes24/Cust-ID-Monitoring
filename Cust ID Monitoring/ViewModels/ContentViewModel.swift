@@ -75,7 +75,12 @@ extension String {
     func generateReport() async {
         parsedData.removeAll()
         exportReport.doc.message = ""
+        healthReport.dict.removeAll()
+        ingestionReport.dict.removeAll()
+        liveReport.dict.removeAll()
+        transactingReport.dict.removeAll()
         self.progress = 0.0
+        
         totalRows = healthReport.rowCount + ingestionReport.rowCount + liveReport.rowCount
         let custIDs = custIDs.trimmingAllSpaces().components(separatedBy: ",")
         for id in custIDs {
