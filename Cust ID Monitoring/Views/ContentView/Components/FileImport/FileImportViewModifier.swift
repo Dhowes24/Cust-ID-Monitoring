@@ -13,7 +13,6 @@ struct FileImporter: ViewModifier {
     @Binding var animateIndicator: Bool
     @Binding var importing: Bool
     @Binding var doc: CSVDocument
-    
     @Binding var showError: Bool
     @Binding var fileImported: Bool
     var confirmFile: @MainActor() -> ()

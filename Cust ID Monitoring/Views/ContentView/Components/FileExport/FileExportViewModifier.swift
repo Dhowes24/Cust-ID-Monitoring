@@ -22,7 +22,6 @@ struct FileExporter: ViewModifier {
     @Binding var doc: CSVDocument
     @Binding var showError: Bool
     
-    
     func body(content: Content) -> some View {
         content
             .fileExporter(

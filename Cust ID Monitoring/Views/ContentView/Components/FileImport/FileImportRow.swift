@@ -15,8 +15,6 @@ struct FileImportRow: View {
     @Binding var report: report
     @Binding var showError: Bool
     
-    
-    
     var body: some View {
         HStack{
             Link(destination: URL(string:linkDestination)!) {
