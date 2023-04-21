@@ -23,6 +23,7 @@
 		6B3E92CF29BBA6AC0033FB8A /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92CE29BBA6AC0033FB8A /* ReportModel.swift */; };
 		6B3E92D129BBB0400033FB8A /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92D029BBB0400033FB8A /* ToolbarView.swift */; };
 		6B3E92D329BBB2210033FB8A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E92D229BBB2210033FB8A /* InfoView.swift */; };
+		6B6C9AE229ECE6D600709FE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6C9AE129ECE6D600709FE6 /* Constants.swift */; };
 		6BD784ED29B12636007D986C /* FileImportViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD784EC29B12636007D986C /* FileImportViewModifier.swift */; };
 		6BD784FF29B5B4C0007D986C /* ContentViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD784EF29B5B3A6007D986C /* ContentViewModel_Tests.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		6B3E92CE29BBA6AC0033FB8A /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		6B3E92D029BBB0400033FB8A /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		6B3E92D229BBB2210033FB8A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		6B6C9AE129ECE6D600709FE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6BD784EC29B12636007D986C /* FileImportViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportViewModifier.swift; sourceTree = "<group>"; };
 		6BD784EF29B5B3A6007D986C /* ContentViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel_Tests.swift; sourceTree = "<group>"; };
 		6BD784F629B5B4BD007D986C /* Cust ID MonitoringTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cust ID MonitoringTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 				6BD784EB29AFCA70007D986C /* Models */,
 				6B34B0AB29A02C4700CE7FB1 /* Views */,
 				6B34B0AC29A02C6000CE7FB1 /* ViewModels */,
+				6B6C9AE129ECE6D600709FE6 /* Constants.swift */,
 				6B34B095299FF47700CE7FB1 /* Assets.xcassets */,
 				6B34B09A299FF47700CE7FB1 /* Cust_ID_Monitoring.entitlements */,
 				6B34B097299FF47700CE7FB1 /* Preview Content */,
@@ -293,6 +296,7 @@
 				6B34B0AE29A0305500CE7FB1 /* FileExportButton.swift in Sources */,
 				6B3E92CF29BBA6AC0033FB8A /* ReportModel.swift in Sources */,
 				6B3E92D129BBB0400033FB8A /* ToolbarView.swift in Sources */,
+				6B6C9AE229ECE6D600709FE6 /* Constants.swift in Sources */,
 				6B3E92C929B91F5A0033FB8A /* FileImportButton.swift in Sources */,
 				6B34B094299FF47500CE7FB1 /* ContentView.swift in Sources */,
 				6B34B0A3299FFB3E00CE7FB1 /* CSVDocument.swift in Sources */,
@@ -441,6 +445,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cust ID Monitoring/Cust_ID_Monitoring.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -468,6 +473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Cust ID Monitoring/Cust_ID_Monitoring.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

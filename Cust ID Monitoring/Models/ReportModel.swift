@@ -13,5 +13,5 @@ struct report {
     var transferred: Bool = false
     var incompatible: Bool = false
     var rowCount: Int = 0
-    var dict = [String: Bool]()
+    var dict = [String: Int]()
 }
