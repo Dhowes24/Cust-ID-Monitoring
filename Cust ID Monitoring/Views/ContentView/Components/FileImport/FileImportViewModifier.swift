@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FileImporter: ViewModifier {
     
+    @Binding var animateIndicator: Bool
     @Binding var importing: Bool
     @Binding var doc: CSVDocument
     
@@ -32,6 +33,9 @@ struct FileImporter: ViewModifier {
                     doc.message = message
                     confirmFile()
                     fileImported = true
+                    withAnimation {
+                        animateIndicator.toggle()
+                    }
                 } catch {
                     showError = true
                 }

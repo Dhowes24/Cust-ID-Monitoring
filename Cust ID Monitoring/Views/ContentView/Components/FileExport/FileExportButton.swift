@@ -28,6 +28,7 @@ struct ExportButtonStyle: ButtonStyle {
 }
 
 struct FileExportButton: View {
+    var animated: Bool
     @Binding var activated: Bool
     var progress: Double
     @State var shrink = 1.0
@@ -78,6 +79,16 @@ struct FileExportButton: View {
                     NSCursor.pop()
                 }
             }
+            .onChange(of: progress) { _ in
+                if(progress >= 1) {
+                    withAnimation {
+                        grow = 1.3
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                            self.grow = 1.0
+                        }
+                    }
+                }
+            }
         }
         .disabled(progress == -0.1)
         .buttonStyle(ExportButtonStyle())
@@ -86,6 +97,6 @@ struct FileExportButton: View {
 
 struct FileExportButton_Previews: PreviewProvider {
     static var previews: some View {
-        FileExportButton(activated: .constant(false),progress: -0.1)
+        FileExportButton(animated: true, activated: .constant(false),progress: -0.1)
     }
 }

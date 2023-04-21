@@ -16,9 +16,9 @@ extension String {
 
 @MainActor class ContentViewModel: ObservableObject {
     
+    @Published var animateExportButton: Bool = false
     @Published var custIDs: String = ""
     var parsedData = [String: String]()
-    
     @Published var progress: Double = -0.1
     @Published var showError: Bool = false
     var totalRows: Int = 0

@@ -47,7 +47,7 @@ struct ContentView: View {
                 VStack {
                     Text("Download Parsed .csv")
                     Spacer()
-                    FileExportButton(activated: $vm.exportReport.transferring,progress: vm.progress)
+                    FileExportButton(animated: vm.animateExportButton, activated: $vm.exportReport.transferring,progress: vm.progress)
                 }
                 .frame(width: 110, height: 180)
                 .offset(y: -18)

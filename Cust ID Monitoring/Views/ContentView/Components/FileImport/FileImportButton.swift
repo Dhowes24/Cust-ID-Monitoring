@@ -29,8 +29,6 @@ struct FileImportButton: View {
     @Binding var activate: Bool
     
     var body: some View {
-        
-        
         Button {
             activate.toggle()
         } label: {

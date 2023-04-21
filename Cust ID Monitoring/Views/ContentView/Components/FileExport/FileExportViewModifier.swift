@@ -18,12 +18,11 @@ import Foundation
 import SwiftUI
 
 struct FileExporter: ViewModifier {
-    
     @Binding var exporting: Bool
     @Binding var doc: CSVDocument
     @Binding var showError: Bool
     
-
+    
     func body(content: Content) -> some View {
         content
             .fileExporter(

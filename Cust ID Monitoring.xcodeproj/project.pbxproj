@@ -105,7 +105,6 @@
 				6B34B091299FF47500CE7FB1 /* Cust_ID_MonitoringApp.swift */,
 				6BD784EB29AFCA70007D986C /* Models */,
 				6B34B0AB29A02C4700CE7FB1 /* Views */,
-				6B34B0AC29A02C6000CE7FB1 /* ViewModels */,
 				6B6C9AE129ECE6D600709FE6 /* Constants.swift */,
 				6B34B095299FF47700CE7FB1 /* Assets.xcassets */,
 				6B34B09A299FF47700CE7FB1 /* Cust_ID_Monitoring.entitlements */,
@@ -125,8 +124,8 @@
 		6B34B0A629A0277F00CE7FB1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				6B3E92CD29BBA2320033FB8A /* FileExport */,
 				6B3E92CC29BBA2190033FB8A /* FileImport */,
+				6B3E92CD29BBA2320033FB8A /* FileExport */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -134,21 +133,12 @@
 		6B34B0AB29A02C4700CE7FB1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6B34B093299FF47500CE7FB1 /* ContentView.swift */,
+				6B7F8BFE29F2F64C0084DFE3 /* ContentView */,
 				6B34B0AF29A0495E00CE7FB1 /* ErrorView.swift */,
 				6B3E92D229BBB2210033FB8A /* InfoView.swift */,
-				6B34B0A629A0277F00CE7FB1 /* Components */,
 				6B3E92D029BBB0400033FB8A /* ToolbarView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		6B34B0AC29A02C6000CE7FB1 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				6B34B0A429A0063000CE7FB1 /* ContentViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		6B3E92CC29BBA2190033FB8A /* FileImport */ = {
@@ -170,6 +160,32 @@
 				6B3E92C629B91CBB0033FB8A /* FileExportViewModifier.swift */,
 			);
 			path = FileExport;
+			sourceTree = "<group>";
+		};
+		6B7F8BFE29F2F64C0084DFE3 /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				6B7F8C0029F2F8220084DFE3 /* ViewModel */,
+				6B7F8BFF29F2F81D0084DFE3 /* View */,
+				6B34B0A629A0277F00CE7FB1 /* Components */,
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
+		6B7F8BFF29F2F81D0084DFE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B34B093299FF47500CE7FB1 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B7F8C0029F2F8220084DFE3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B34B0A429A0063000CE7FB1 /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		6BD784EB29AFCA70007D986C /* Models */ = {
